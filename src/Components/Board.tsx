@@ -15,20 +15,26 @@ interface IAreaProps {
 
 const Wrapper = styled.div`
   width: 300px;
-  padding: 20px 10px;
-  padding-top: 10px;
+  padding: 10px 0px;
+  padding-bottom: 0;
   background-color: ${(props) => props.theme.boardColor};
   border-radius: 5px;
   min-height: 300px;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 `;
 
 const Area = styled.div<IAreaProps>`
   flex-grow: 1;
   background-color: ${(props) =>
-    props.isDraggingOver ? 'pink' : props.isDraggingFromThis ? 'red' : 'blue'};
+    props.isDraggingOver
+      ? props.theme.isDraggingOver
+      : props.isDraggingFromThis
+      ? props.theme.isDraggingFromThis
+      : 'transparent'};
   transition: background-color 0.2s ease-in-out;
+  padding: 20px;
 `;
 
 const Title = styled.h2`

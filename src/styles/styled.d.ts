@@ -5,5 +5,8 @@ declare module 'styled-components' {
     bgColor: string;
     cardColor: string;
     boardColor: string;
+    isDraggingOver: string;
+    isDraggingFromThis: string;
+    isDragging: string;
   }
 }

@@ -7,22 +7,31 @@ interface IProps {
   index: number;
 }
 
-const Card = styled.div`
+interface ICardProps {
+  isDragging: boolean;
+}
+
+const Card = styled.div<ICardProps>`
   border-radius: 5px;
-  padding: 10px 10px;
+  padding: 10px;
   margin-bottom: 8px;
-  background-color: ${(props) => props.theme.cardColor};
+  background-color: ${(props) =>
+    props.isDragging ? props.theme.isDragging : props.theme.cardColor};
+
   user-select: none;
+  box-shadow: ${(props) =>
+    props.isDragging ? '0px 2px 5px rgba(0, 0, 0, 0.05)' : 'none'};
 `;
 
 const DraggableCard = ({ toDo, index }: IProps) => {
   return (
     <Draggable draggableId={toDo} index={index} key={toDo}>
-      {(magic) => (
+      {(magic, snapshot) => (
         <Card
           ref={magic.innerRef}
           {...magic.dragHandleProps}
           {...magic.draggableProps}
+          isDragging={snapshot.isDragging}
         >
           {toDo}
         </Card>
