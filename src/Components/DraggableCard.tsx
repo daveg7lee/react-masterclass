@@ -3,7 +3,8 @@ import { Draggable } from 'react-beautiful-dnd';
 import styled from 'styled-components';
 
 interface IProps {
-  toDo: string;
+  toDoId: number;
+  toDoText: string;
   index: number;
 }
 
@@ -23,9 +24,9 @@ const Card = styled.div<ICardProps>`
     props.isDragging ? '0px 2px 5px rgba(0, 0, 0, 0.05)' : 'none'};
 `;
 
-const DraggableCard = ({ toDo, index }: IProps) => {
+const DraggableCard = ({ toDoId, toDoText, index }: IProps) => {
   return (
-    <Draggable draggableId={toDo} index={index} key={toDo}>
+    <Draggable draggableId={toDoId + ''} index={index}>
       {(magic, snapshot) => (
         <Card
           ref={magic.innerRef}
@@ -33,7 +34,7 @@ const DraggableCard = ({ toDo, index }: IProps) => {
           {...magic.draggableProps}
           isDragging={snapshot.isDragging}
         >
-          {toDo}
+          {toDoText}
         </Card>
       )}
     </Draggable>
