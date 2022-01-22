@@ -1,7 +1,7 @@
 import { Droppable } from 'react-beautiful-dnd';
 import DraggableCard from './DraggableCard';
 import styled from 'styled-components';
-import React from 'react';
+import React, { useRef } from 'react';
 
 interface IProps {
   toDos: string[];
@@ -45,9 +45,19 @@ const Title = styled.h2`
 `;
 
 const Board = ({ toDos, boardId }: IProps) => {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const onClick = () => {
+    inputRef.current?.focus();
+    setTimeout(() => {
+      inputRef.current?.blur();
+    }, 5000);
+  };
+
   return (
     <Wrapper>
       <Title>{boardId}</Title>
+      <input ref={inputRef} placeholder="grab me" />
+      <button onClick={onClick}>click me</button>
       <Droppable droppableId={boardId}>
         {(magic, info) => (
           <Area
