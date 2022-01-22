@@ -14,14 +14,15 @@ const Wrapper = styled.div`
   padding-top: 10px;
   background-color: ${(props) => props.theme.boardColor};
   border-radius: 5px;
-  min-height: 200px;
-  min-height: 300px;
+  > div {
+    min-height: 300px;
+  }
 `;
 
 const Title = styled.h2`
   text-align: center;
   font-weight: 600;
-  margin-bottom: 10px;
+  margin: 18px 0px;
   font-size: 18px;
 `;
 
@@ -30,7 +31,7 @@ const Board = ({ toDos, boardId }: IProps) => {
     <Wrapper>
       <Title>{boardId}</Title>
       <Droppable droppableId={boardId}>
-        {(magic) => (
+        {(magic, snapshot) => (
           <div ref={magic.innerRef} {...magic.droppableProps}>
             {toDos.map((toDo, index) => (
               <DraggableCard key={toDo} index={index} toDo={toDo} />
