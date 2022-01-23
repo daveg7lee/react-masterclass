@@ -1,4 +1,4 @@
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { BoardState, toDoState } from './atom';
@@ -36,17 +36,7 @@ function App() {
           {(magic) => (
             <Boards ref={magic.innerRef} {...magic.droppableProps}>
               {boards.map((boardId, index) => (
-                <Draggable draggableId={boardId} index={index} key={boardId}>
-                  {(magic) => (
-                    <div
-                      {...magic.dragHandleProps}
-                      {...magic.draggableProps}
-                      ref={magic.innerRef}
-                    >
-                      <Board boardId={boardId} toDos={toDos[boardId]} />
-                    </div>
-                  )}
-                </Draggable>
+                <Board boardId={boardId} toDos={toDos[boardId]} index={index} />
               ))}
               {magic.placeholder}
             </Boards>
