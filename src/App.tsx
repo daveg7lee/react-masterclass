@@ -23,6 +23,14 @@ const Boards = styled.div`
   width: 100%;
 `;
 
+const Title = styled.h1`
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  font-size: 1.5rem;
+  font-weight: 600;
+`;
+
 function App() {
   const [toDos, setToDos] = useRecoilState(toDoState);
   const [boards, setBoards] = useRecoilState(BoardState);
@@ -36,6 +44,7 @@ function App() {
       onBeforeDragStart={onBeforeDragStart}
     >
       <Wrapper>
+        <Title>Kanban Board</Title>
         <Droppable droppableId="boards" direction="horizontal" type="board">
           {(magic) => (
             <Boards ref={magic.innerRef} {...magic.droppableProps}>

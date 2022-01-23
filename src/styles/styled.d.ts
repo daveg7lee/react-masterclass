@@ -8,5 +8,6 @@ declare module 'styled-components' {
     isDraggingOver: string;
     isDraggingFromThis: string;
     isDragging: string;
+    textColor: string;
   }
 }

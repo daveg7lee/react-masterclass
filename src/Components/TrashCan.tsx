@@ -12,7 +12,7 @@ const TrashCanWrapper = styled.div`
   height: 40px;
 
   .trash {
-    background-color: white;
+    background-color: #5e5e5e;
     width: 100%;
     height: 100%;
     display: inline-block;
@@ -22,7 +22,7 @@ const TrashCanWrapper = styled.div`
       position: absolute;
       top: 13px;
       right: 8px;
-      color: ${(props) => props.theme.boardColor};
+      color: white;
     }
 
     position: relative;
@@ -37,7 +37,7 @@ const TrashCanWrapper = styled.div`
     position: absolute;
     height: 6px;
     width: 48px;
-    background: white;
+    background: #5e5e5e;
     top: -10px;
     left: -8px;
     border-top-left-radius: 10px;
@@ -53,7 +53,7 @@ const TrashCanWrapper = styled.div`
     position: absolute;
     width: 13px;
     height: 4px;
-    background: white;
+    background: #5e5e5e;
     top: -6px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
