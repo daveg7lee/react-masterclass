@@ -18,25 +18,27 @@ const Card = styled.div<ICardProps>`
   margin-bottom: 8px;
   background-color: ${(props) =>
     props.isDragging ? props.theme.isDragging : props.theme.cardColor};
-
   user-select: none;
   box-shadow: ${(props) =>
     props.isDragging ? '0px 2px 5px rgba(0, 0, 0, 0.05)' : 'none'};
+  font-weight: 500;
 `;
 
 const DraggableCard = ({ toDoId, toDoText, index }: IProps) => {
   return (
     <Draggable draggableId={toDoId + ''} index={index}>
-      {(magic, snapshot) => (
-        <Card
-          ref={magic.innerRef}
-          {...magic.dragHandleProps}
-          {...magic.draggableProps}
-          isDragging={snapshot.isDragging}
-        >
-          {toDoText}
-        </Card>
-      )}
+      {(magic, snapshot) => {
+        return (
+          <Card
+            ref={magic.innerRef}
+            {...magic.dragHandleProps}
+            {...magic.draggableProps}
+            isDragging={snapshot.isDragging}
+          >
+            {toDoText}
+          </Card>
+        );
+      }}
     </Draggable>
   );
 };

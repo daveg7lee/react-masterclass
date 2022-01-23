@@ -27,6 +27,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  margin-right: 15px;
 `;
 
 const Area = styled.div<IAreaProps>`
@@ -53,6 +54,10 @@ const Form = styled.form`
     background-color: ${(props) => props.theme.cardColor};
     padding: 0px 8px;
     outline: none;
+    color: white;
+    ::placeholder {
+      color: white;
+    }
   }
 `;
 
@@ -107,6 +112,7 @@ const Board = ({ toDos, boardId, index }: IProps) => {
             <input
               type="text"
               placeholder={`Add task on ${boardId}`}
+              autoComplete="off"
               {...register('toDo', { required: 'we need some text!!' })}
             />
             {errors.toDo && <Error>{errors.toDo.message}</Error>}

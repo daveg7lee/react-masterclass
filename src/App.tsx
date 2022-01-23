@@ -1,7 +1,7 @@
-import { DragDropContext, Droppable } from 'react-beautiful-dnd';
-import { useRecoilState } from 'recoil';
+import { DragDropContext, Droppable, DragStart } from 'react-beautiful-dnd';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
-import { BoardState, toDoState } from './atom';
+import { BoardState, toDoState, TrashCanState } from './atom';
 import Board from './Components/Board';
 import TrashCan from './Components/TrashCan';
 import { onDrageEnd } from './utils';
@@ -21,22 +21,31 @@ const Boards = styled.div`
   justify-content: center;
   align-items: flex-start;
   width: 100%;
-  gap: 16px;
 `;
 
 function App() {
   const [toDos, setToDos] = useRecoilState(toDoState);
   const [boards, setBoards] = useRecoilState(BoardState);
+  const setTrashCan = useSetRecoilState(TrashCanState);
+  const onBeforeDragStart = (info: DragStart) => {
+    if (info.type === 'DEFAULT') setTrashCan(true);
+  };
   return (
     <DragDropContext
-      onDragEnd={(info) => onDrageEnd(info, setBoards, setToDos)}
+      onDragEnd={(info) => onDrageEnd(info, setBoards, setToDos, setTrashCan)}
+      onBeforeDragStart={onBeforeDragStart}
     >
       <Wrapper>
         <Droppable droppableId="boards" direction="horizontal" type="board">
           {(magic) => (
             <Boards ref={magic.innerRef} {...magic.droppableProps}>
               {boards.map((boardId, index) => (
-                <Board boardId={boardId} toDos={toDos[boardId]} index={index} />
+                <Board
+                  boardId={boardId}
+                  toDos={toDos[boardId]}
+                  index={index}
+                  key={index}
+                />
               ))}
               {magic.placeholder}
             </Boards>

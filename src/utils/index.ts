@@ -5,10 +5,13 @@ import { ITodoState } from '../atom';
 export const onDrageEnd = (
   info: DropResult,
   setBoards: SetterOrUpdater<string[]>,
-  setToDos: SetterOrUpdater<ITodoState>
+  setToDos: SetterOrUpdater<ITodoState>,
+  setTrashCan: SetterOrUpdater<boolean>
 ) => {
   const { destination, source } = info;
   if (!destination) return;
+
+  setTrashCan(false);
 
   if (source.droppableId === 'boards') {
     setBoards((prev) => {

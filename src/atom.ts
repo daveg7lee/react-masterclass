@@ -27,3 +27,8 @@ export const BoardState = atom<string[]>({
   default: ['To Do', 'Doing', 'Done'],
   effects_UNSTABLE: [persistAtom],
 });
+
+export const TrashCanState = atom<boolean>({
+  key: 'trashcan',
+  default: true,
+});
