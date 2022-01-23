@@ -30,5 +30,5 @@ export const BoardState = atom<string[]>({
 
 export const TrashCanState = atom<boolean>({
   key: 'trashcan',
-  default: true,
+  default: false,
 });
