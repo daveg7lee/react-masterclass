@@ -8,7 +8,7 @@ export interface ITodo {
   text: string;
 }
 
-interface ITodoState {
+export interface ITodoState {
   [key: string]: ITodo[];
 }
 
