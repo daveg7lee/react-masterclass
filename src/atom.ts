@@ -21,3 +21,9 @@ export const toDoState = atom<ITodoState>({
   },
   effects_UNSTABLE: [persistAtom],
 });
+
+export const BoardState = atom<string[]>({
+  key: 'boards',
+  default: ['To Do', 'Doing', 'Done'],
+  effects_UNSTABLE: [persistAtom],
+});
