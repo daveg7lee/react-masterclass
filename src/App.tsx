@@ -32,7 +32,7 @@ function App() {
       onDragEnd={(info) => onDrageEnd(info, setBoards, setToDos)}
     >
       <Wrapper>
-        <Droppable droppableId="boards" direction="horizontal">
+        <Droppable droppableId="boards" direction="horizontal" type="board">
           {(magic) => (
             <Boards ref={magic.innerRef} {...magic.droppableProps}>
               {boards.map((boardId, index) => (
